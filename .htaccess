@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /
+
+# Jika file atau folder ada, tampilkan langsung
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Jika tidak ada file/folder, arahkan ke WordPress
+RewriteRule . /index.php [L]
+
+# PHP handler (cPanel)
+<IfModule mime_module>
+AddHandler application/x-httpd-ea-php81 .php .php8 .phtml
+</IfModule>

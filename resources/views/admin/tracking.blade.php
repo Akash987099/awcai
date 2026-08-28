@@ -1,0 +1,66 @@
+@extends('admin.layout.app')
+@section('content')
+    <div class="p-4 sm:ml-64">
+        <div class="p-4 rounded-lg dark:border-gray-700 mt-14">
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Tracking</h2>
+                    <div class="flex items-center gap-2">
+                        
+                        <input type="text" id="searchInput" placeholder="Search..."
+                            class="px-3 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table id="userTable" class="min-w-full table-auto border border-gray-200 dark:border-gray-700">
+                        <thead class="bg-gray-100 dark:bg-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">#</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">IP</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Agent</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Device</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Browser</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">OS</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">ISP</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Country</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Region</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">City</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Proxy</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            @forelse ($visits as $index => $item)
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">
+                                        {{ $visits->firstItem() + $index }}
+                                    </td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->ip_address }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->user_agent }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->device }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->browser }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->os }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->isp }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->country }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->region }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->city }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->is_proxy }}</td>
+                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->visit_date }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-gray-500 dark:text-gray-300 py-4">No
+                                        No record found.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        {{ $visits->links('pagination::tailwind') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

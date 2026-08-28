@@ -1,0 +1,5 @@
+@include('panel.client.layout.header')
+@include('panel.client.layout.navbar')
+@include('panel.client.layout.sidebar')
+@yield('content')
+@include('panel.client.layout.footer')
