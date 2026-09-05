@@ -26,6 +26,40 @@
                 radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08), transparent 30%);
             pointer-events: none;
         }
+
+        .heaven-showcase {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .heaven-showcase-card {
+            display: block;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            border-radius: 1.25rem;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        }
+
+        .heaven-showcase-card:hover {
+            transform: translateY(-6px);
+            border-color: #f59e0b;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16);
+        }
+
+        .heaven-showcase-image {
+            height: 245px;
+            width: 100%;
+            object-fit: cover;
+            object-position: top;
+            background: #f3f4f6;
+        }
+
+        @media (max-width: 640px) {
+            .heaven-showcase-image {
+                height: 185px;
+            }
+        }
 </style>
 
 {{-- <div class="hero-slide is-active absolute inset-0" data-hero-slide>
@@ -89,6 +123,46 @@
     </div>
 
 </section>
+
+    <section class="heaven-showcase py-14 md:py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-8 md:mb-10">
+                <div>
+                    <span class="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-700">Featured brands</span>
+                    <h2 class="mt-3 text-2xl font-bold text-slate-900 md:text-3xl">Explore Heaven online</h2>
+                </div>
+                <p class="max-w-md text-sm text-slate-600 md:text-right">Fresh shopping and a delightful café experience, just one click away.</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <a href="https://cafe.awcai.cloud/" target="_blank" rel="noopener noreferrer" class="heaven-showcase-card group" aria-label="Visit Heaven Cafe">
+                    <img src="{{ asset('assets/img/projects/complete/heaven-cafe.png') }}" alt="Heaven Cafe website preview" class="heaven-showcase-image">
+                    <div class="flex items-center justify-between gap-4 p-5 md:p-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Heaven Café</h3>
+                            <p class="mt-1 text-sm text-slate-600">Good food, great moments.</p>
+                        </div>
+                        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 transition-transform duration-200 group-hover:translate-x-1">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="https://heavenkart.online/" target="_blank" rel="noopener noreferrer" class="heaven-showcase-card group" aria-label="Visit Heaven Kart">
+                    <img src="{{ asset('assets/img/projects/complete/heaven-cart.png') }}" alt="Heaven Kart website preview" class="heaven-showcase-image">
+                    <div class="flex items-center justify-between gap-4 p-5 md:p-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Heaven Kart</h3>
+                            <p class="mt-1 text-sm text-slate-600">Your everyday shopping destination.</p>
+                        </div>
+                        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white transition-transform duration-200 group-hover:translate-x-1">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 
 
     <div class="logo-marquee">
@@ -1558,4 +1632,3 @@
 }
 </script>
 @endsection
-
