@@ -124,47 +124,6 @@
 
 </section>
 
-    <section class="heaven-showcase py-14 md:py-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-8 md:mb-10">
-                <div>
-                    <span class="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-700">Featured brands</span>
-                    <h2 class="mt-3 text-2xl font-bold text-slate-900 md:text-3xl">Explore Heaven online</h2>
-                </div>
-                <p class="max-w-md text-sm text-slate-600 md:text-right">Fresh shopping and a delightful café experience, just one click away.</p>
-            </div>
-
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <a href="https://cafe.awcai.cloud/" target="_blank" rel="noopener noreferrer" class="heaven-showcase-card group" aria-label="Visit Heaven Cafe">
-                    <img src="{{ asset('assets/img/projects/complete/heaven-cafe.png') }}" alt="Heaven Cafe website preview" class="heaven-showcase-image">
-                    <div class="flex items-center justify-between gap-4 p-5 md:p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900">Heaven Café</h3>
-                            <p class="mt-1 text-sm text-slate-600">Good food, great moments.</p>
-                        </div>
-                        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 transition-transform duration-200 group-hover:translate-x-1">
-                            <i class="fas fa-arrow-up-right-from-square"></i>
-                        </span>
-                    </div>
-                </a>
-
-                <a href="https://heavenkart.online/" target="_blank" rel="noopener noreferrer" class="heaven-showcase-card group" aria-label="Visit Heaven Kart">
-                    <img src="{{ asset('assets/img/projects/complete/heaven-cart.png') }}" alt="Heaven Kart website preview" class="heaven-showcase-image">
-                    <div class="flex items-center justify-between gap-4 p-5 md:p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900">Heaven Kart</h3>
-                            <p class="mt-1 text-sm text-slate-600">Your everyday shopping destination.</p>
-                        </div>
-                        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white transition-transform duration-200 group-hover:translate-x-1">
-                            <i class="fas fa-arrow-up-right-from-square"></i>
-                        </span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-
     <div class="logo-marquee">
         <div class="logo-marquee--gradient"></div>
         <div class="logo-marquee--marquee">
@@ -368,6 +327,46 @@
 
     </div>
 </section>
+
+ <section class="heaven-showcase py-14 md:py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-8 md:mb-10">
+                <div>
+                    <span class="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-700">Featured brands</span>
+                    <h2 class="mt-3 text-2xl font-bold text-slate-900 md:text-3xl">Explore Heaven online</h2>
+                </div>
+                <p class="max-w-md text-sm text-slate-600 md:text-right">Fresh shopping and a delightful café experience, just one click away.</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <a href="https://cafe.awcai.cloud/" target="_blank" rel="noopener noreferrer" class="heaven-showcase-card group" aria-label="Visit Heaven Cafe">
+                    <img src="{{ asset('assets/img/projects/complete/heaven-cafe.png') }}" alt="Heaven Cafe website preview" class="heaven-showcase-image">
+                    <div class="flex items-center justify-between gap-4 p-5 md:p-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Heaven Café</h3>
+                            <p class="mt-1 text-sm text-slate-600">Good food, great moments.</p>
+                        </div>
+                        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 transition-transform duration-200 group-hover:translate-x-1">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="https://heavenkart.online/" target="_blank" rel="noopener noreferrer" class="heaven-showcase-card group" aria-label="Visit Heaven Kart">
+                    <img src="{{ asset('assets/img/projects/complete/heaven-cart.png') }}" alt="Heaven Kart website preview" class="heaven-showcase-image">
+                    <div class="flex items-center justify-between gap-4 p-5 md:p-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Heaven Kart</h3>
+                            <p class="mt-1 text-sm text-slate-600">Your everyday shopping destination.</p>
+                        </div>
+                        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white transition-transform duration-200 group-hover:translate-x-1">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <section class="insight-section section-shell">
         <div class="container relative z-10 mx-auto px-4">
