@@ -23,7 +23,7 @@
                 <article class="cp-product-card" data-product-name="{{ strtolower($item->name) }}">
                     <div class="cp-product-card__image">
                         @if ($item->image)
-                            <img src="/{{ ltrim($item->image, '/') }}" alt="{{ $item->name }}" loading="lazy">
+                            <img src="{{ asset(ltrim($item->image, '/')) }}" alt="{{ $item->name }}" loading="lazy">
                         @else
                             <span class="cp-product-card__placeholder">&#9638;</span>
                         @endif

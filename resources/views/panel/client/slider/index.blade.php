@@ -14,7 +14,7 @@
     @forelse ($sliders as $slider)
         @if ($loop->first)<section class="cp-slider-grid">@endif
             <article class="cp-slider-card">
-                <img src="/{{ ltrim($slider->image, '/') }}" alt="{{ $slider->title ?: 'Website slider image' }}">
+                <img src="{{ asset(ltrim($slider->image, '/')) }}" alt="{{ $slider->title ?: 'Website slider image' }}">
                 <div class="cp-slider-card__body">
                     <div><h2>{{ $slider->title ?: 'Untitled slide' }}</h2><span>Position {{ $slider->sort_order }}</span></div>
                     <button class="delete-btn" type="button" data-id="{{ $slider->id }}" data-url="{{ route('panel.slider.delete', $slider->id) }}">Delete</button>

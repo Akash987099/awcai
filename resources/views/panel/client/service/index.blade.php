@@ -14,7 +14,7 @@
     @forelse ($services as $service)
         @if ($loop->first)<section class="cp-service-grid">@endif
             <article class="cp-service-card">
-                @if ($service->image)<img src="/{{ ltrim($service->image, '/') }}" alt="{{ $service->title }}">@else<div class="cp-service-card__placeholder">&#9672;</div>@endif
+                @if ($service->image)<img src="{{ asset(ltrim($service->image, '/')) }}" alt="{{ $service->title }}">@else<div class="cp-service-card__placeholder">&#9672;</div>@endif
                 <div class="cp-service-card__body">
                     <span class="cp-service-card__position">Position {{ $service->sort_order }}</span>
                     <h2>{{ $service->title }}</h2>

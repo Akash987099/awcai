@@ -23,7 +23,7 @@
             @foreach($videos as $video)
                 <article class="cp-service-card">
                     <video class="cp-video-player" controls preload="metadata">
-                        <source src="/{{ ltrim($video->video_path, '/') }}" type="video/{{ pathinfo($video->video_path, PATHINFO_EXTENSION) }}">
+                        <source src="{{ asset(ltrim($video->video_path, '/')) }}" type="video/{{ pathinfo($video->video_path, PATHINFO_EXTENSION) }}">
                         Your browser does not support video playback.
                     </video>
                     <div class="cp-service-card__body">
@@ -31,7 +31,7 @@
                         <h2>{{ $video->title }}</h2>
                         <p>{{ $video->description ?: 'No description added.' }}</p>
                         <div class="cp-service-card__actions">
-                            <a class="cp-video-open" href="/{{ ltrim($video->video_path, '/') }}" target="_blank" rel="noopener">Open video</a>
+                            <a class="cp-video-open" href="{{ asset(ltrim($video->video_path, '/')) }}" target="_blank" rel="noopener">Open video</a>
                             <button type="button" class="delete-btn" data-id="{{ $video->id }}" data-url="{{ route('panel.pnc-videos.delete', $video->id) }}">Delete</button>
                         </div>
                     </div>
