@@ -1,0 +1,1 @@
+<?php namespace App\Models\client; use Illuminate\Database\Eloquent\Model; class PncReview extends Model{protected $table='pnc_reviews';protected $fillable=['client_id','name','designation','rating','message','image','status'];}

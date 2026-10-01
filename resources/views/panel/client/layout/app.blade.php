@@ -1,5 +1,6 @@
 @include('panel.client.layout.header')
 @include('panel.client.layout.navbar')
 @include('panel.client.layout.sidebar')
+@include('panel.client.layout.settings-modal')
 @yield('content')
 @include('panel.client.layout.footer')

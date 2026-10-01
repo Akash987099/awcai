@@ -1,44 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin || Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWC Care | Clinic portal sign in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/login.css?v={{ filemtime(public_path('assets/css/login.css')) }}">
 </head>
-
-<body class="min-h-screen flex items-center justify-center">
-    <div id="alert-container" class="fixed bottom-5 right-5 space-y-3 z-50"></div>
-    <section class="w-full max-w-md p-6 rounded-xl shadow-lg backdrop-blur-md bg-white/30 dark:bg-gray-800/30">
-        <h1 class="text-2xl font-bold text-center text-white mb-4">Sign in to your account</h1>
-        <form class="space-y-4" id="loginform" method="POST">
-            @csrf
-            <div>
-                <label for="email" class="block mb-1 text-sm font-medium text-white">Your email</label>
-                <input type="email" name="email" id="email" placeholder="name@company.com"
-                    class="w-full px-4 py-2 rounded-lg bg-white/80 text-black border border-gray-300 focus:ring-2 focus:ring-blue-500"
-                    required>
-            </div>
-            <div>
-                <label for="password" class="block mb-1 text-sm font-medium text-white">Password</label>
-                <input type="password" name="password" id="password" placeholder="••••••••"
-                    class="w-full px-4 py-2 rounded-lg bg-white/80 text-black border border-gray-300 focus:ring-2 focus:ring-blue-500"
-                    required>
-            </div>
-            <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Sign
-                in</button>
-        </form>
-    </section>
+<body class="clinic-login">
+    <div id="alert-container" class="alert-container"></div>
+    <main class="clinic-login__layout">
+        <a class="clinic-brand" href="{{ url('/') }}" aria-label="AWC Care home"><span>+</span><div><strong>AWC Care</strong><small>Clinic network portal</small></div></a>
+        <section class="clinic-login__welcome">
+            <p class="clinic-kicker"><i></i> One secure workspace</p>
+            <h1>Care, connected<br>across every clinic.</h1>
+            <p>Securely manage your clinic, staff and patient services from one place.</p>
+            <div class="clinic-trust"><b>✓</b><span><strong>Protected access</strong><br>Built for healthcare teams</span></div>
+        </section>
+        <section class="clinic-login__card" aria-labelledby="login-title">
+            <p class="clinic-kicker clinic-kicker--dark"><i></i> Member access</p>
+            <h2 id="login-title">Welcome back</h2>
+            <p class="clinic-login__subtext">Sign in to continue to your workspace.</p>
+            <form id="loginform" method="POST" class="clinic-form">
+                @csrf
+                <div class="clinic-field">
+                    <label for="email">Email address</label>
+                    <div><span aria-hidden="true">@</span><input type="email" name="email" id="email" placeholder="you@clinic.com" autocomplete="email" required></div>
+                </div>
+                <div class="clinic-field">
+                    <div class="clinic-label-row"><label for="password">Password</label><a href="#">Forgot password?</a></div>
+                    <div><span aria-hidden="true">●</span><input type="password" name="password" id="password" placeholder="Enter your password" autocomplete="current-password" required></div>
+                </div>
+                <button type="submit">Sign in securely <b aria-hidden="true">→</b></button>
+            </form>
+            <p class="clinic-support">Need help accessing your account? <a href="mailto:support@aryawebinnovations.com">Contact support</a></p>
+        </section>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        var adminLoginUrl = "{{ route('panel.logins') }}";
-        var adminIndexUrl = "{{ route('panel.index') }}";
-    </script>
-    <script src="{{ asset('assets/js/login.js') }}"></script>
+    <script>var adminLoginUrl = "{{ route('panel.logins') }}"; var adminIndexUrl = "{{ route('panel.index') }}";</script>
+    <script src="/assets/js/login.js"></script>
 </body>
-
 </html>

@@ -1,61 +1,78 @@
 @extends('panel.client.layout.app')
 
 @section('content')
-    <div class="p-4 sm:ml-64">
-        <div class="p-4 rounded-lg dark:border-gray-700 mt-14">
-
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
-                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Products</h2>
-                    <div class="flex items-center gap-2">
-                        <a href="{{ route('panel.product.add') }}"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">+ Add</a>
-                        <input type="text" id="searchInput" placeholder="Search..."
-                            class="px-3 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    </div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table id="userTable" class="min-w-full table-auto border border-gray-200 dark:border-gray-700">
-                        <thead class="bg-gray-100 dark:bg-gray-700">
-                            <tr>
-                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">#</th>
-                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Name</th>
-                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Actions
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                            @forelse ($products as $index => $item)
-                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">
-                                        {{ $products->firstItem() + $index }}
-                                    </td>
-                                    <td class="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{{ $item->name }}</td>
-                                    <td class="px-4 py-2 text-sm">
-                                        <a href="{{ route('panel.product.edit', $item->id) }}"
-                                            class="text-blue-600 hover:underline dark:text-blue-400"><x-icon
-                                                type="edit" /></a>
-                                                <button class="text-red-600 hover:underline dark:text-red-400 delete-btn"
-                                            data-id="{{ $item->id }}"
-                                            data-url="{{ route('panel.product.delete', $item->id) }}">
-                                            <x-icon type="delete" />
-                                        </button>
-
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center text-gray-500 dark:text-gray-300 py-4">No
-                                        No record found.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                    <div class="mt-4">
-                        {{ $products->links('pagination::tailwind') }}
-                    </div>
-                </div>
-            </div>
+<main class="cp-main cp-products">
+    <section class="cp-products__header">
+        <div>
+            <p class="cp-eyebrow cp-eyebrow--dark"><span></span> Product catalogue</p>
+            <h1>Products gallery</h1>
+            <p>Manage your product images and details in one visual catalogue.</p>
         </div>
+        <a class="cp-add-product" href="{{ route('panel.product.add') }}"><span>+</span> Add product</a>
+    </section>
+
+    <div class="cp-gallery-toolbar">
+        <label class="cp-gallery-search" for="gallery-search"><span aria-hidden="true">&#8981;</span><input id="gallery-search" type="search" placeholder="Search products..." autocomplete="off"></label>
+        <span class="cp-gallery-count">{{ $products->total() }} {{ Str::plural('product', $products->total()) }}</span>
     </div>
+
+    @forelse ($products as $item)
+        @if ($loop->first)
+            <section class="cp-product-gallery" id="product-gallery">
+        @endif
+                <article class="cp-product-card" data-product-name="{{ strtolower($item->name) }}">
+                    <div class="cp-product-card__image">
+                        @if ($item->image)
+                            <img src="/{{ ltrim($item->image, '/') }}" alt="{{ $item->name }}" loading="lazy">
+                        @else
+                            <span class="cp-product-card__placeholder">&#9638;</span>
+                        @endif
+                        <span class="cp-product-card__number">#{{ $products->firstItem() + $loop->index }}</span>
+                    </div>
+                    <div class="cp-product-card__body">
+                        <h2 title="{{ $item->name }}">{{ $item->name }}</h2>
+                        <p>Catalogue item</p>
+                        <div class="cp-product-card__actions">
+                            <a href="{{ route('panel.product.edit', $item->id) }}" aria-label="Edit {{ $item->name }}">Edit <span>&rarr;</span></a>
+                            <button type="button" class="delete-btn" data-id="{{ $item->id }}" data-url="{{ route('panel.product.delete', $item->id) }}" aria-label="Delete {{ $item->name }}">Delete</button>
+                        </div>
+                    </div>
+                </article>
+        @if ($loop->last)
+            </section>
+        @endif
+    @empty
+        <section class="cp-gallery-empty">
+            <span>&#9638;</span>
+            <h2>Your gallery is empty</h2>
+            <p>Add your first product to start building the catalogue.</p>
+            <a class="cp-add-product" href="{{ route('panel.product.add') }}"><span>+</span> Add your first product</a>
+        </section>
+    @endforelse
+
+    <p class="cp-gallery-no-result" id="gallery-no-result" hidden>No matching products found.</p>
+
+    @if ($products->hasPages())
+        <div class="cp-gallery-pagination">{{ $products->links('pagination::tailwind') }}</div>
+    @endif
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var search = document.getElementById('gallery-search');
+    var cards = Array.from(document.querySelectorAll('.cp-product-card'));
+    var noResult = document.getElementById('gallery-no-result');
+    if (!search) return;
+    search.addEventListener('input', function () {
+        var query = this.value.trim().toLowerCase();
+        var visible = 0;
+        cards.forEach(function (card) {
+            var matches = !query || card.dataset.productName.includes(query);
+            card.hidden = !matches;
+            if (matches) visible++;
+        });
+        noResult.hidden = visible !== 0;
+    });
+});
+</script>
 @endsection

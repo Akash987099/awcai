@@ -14,6 +14,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('check.api')->group(function () {
     Route::get('products', [ProductController::class, 'products']);
+    Route::get('website-settings', [WebsiteMasterController::class, 'settings']);
+    Route::get('sliders', [WebsiteMasterController::class, 'sliders']);
+    Route::get('services', [WebsiteMasterController::class, 'services']);
+    Route::get('blogs', [WebsiteMasterController::class, 'blogs']);
+    Route::get('articles', [WebsiteMasterController::class, 'articles']);
+    Route::get('reviews', [WebsiteMasterController::class, 'reviews']);
+    Route::get('videos', [WebsiteMasterController::class, 'videos']);
 });
 
 Route::controller(CountryController::class)->group(function () {
