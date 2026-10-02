@@ -9,6 +9,7 @@ use App\Models\client\WebsiteArticle;
 use App\Models\client\WebsiteBlog;
 use App\Models\client\WebsiteNews;
 use App\Models\client\WebsiteFaq;
+use App\Models\client\WebsiteCmsPage;
 use App\Models\client\WebsiteService;
 use App\Models\client\WebsiteSetting;
 use App\Models\client\WebsiteSlider;
@@ -77,6 +78,16 @@ class WebsiteMasterController extends Controller
         $items = WebsiteFaq::where('client_id', $this->clientId($request))
             ->where('status', 'published')
             ->orderBy('sort_order')
+            ->latest('id')
+            ->get();
+
+        return $this->success($items);
+    }
+
+    public function cmsPages(Request $request)
+    {
+        $items = WebsiteCmsPage::where('client_id', $this->clientId($request))
+            ->where('status', 'published')
             ->latest('id')
             ->get();
 
