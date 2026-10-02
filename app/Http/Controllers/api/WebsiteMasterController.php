@@ -49,7 +49,8 @@ class WebsiteMasterController extends Controller
     public function blogs(Request $request)
     {
         $items = WebsiteBlog::where('client_id', $this->clientId($request))
-            ->where('status', 'published')->latest('publish_date')->get()
+            // ->where('status', 'published')->latest('publish_date')
+            ->get()
             ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['featured_image']));
 
         return $this->success($items);
@@ -58,7 +59,8 @@ class WebsiteMasterController extends Controller
     public function articles(Request $request)
     {
         $items = WebsiteArticle::where('client_id', $this->clientId($request))
-            ->where('status', 'published')->latest('publish_date')->get()
+            // ->where('status', 'published')->latest('publish_date')
+            ->get()
             ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['featured_image']));
 
         return $this->success($items);
@@ -67,7 +69,8 @@ class WebsiteMasterController extends Controller
     public function news(Request $request)
     {
         $items = WebsiteNews::where('client_id', $this->clientId($request))
-            ->where('status', 'published')->latest('publish_date')->get()
+            // ->where('status', 'published')->latest('publish_date')
+            ->get()
             ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['featured_image']));
 
         return $this->success($items);
