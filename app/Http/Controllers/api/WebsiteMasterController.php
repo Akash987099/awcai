@@ -8,6 +8,7 @@ use App\Models\client\PncVideo;
 use App\Models\client\WebsiteArticle;
 use App\Models\client\WebsiteBlog;
 use App\Models\client\WebsiteNews;
+use App\Models\client\WebsiteFaq;
 use App\Models\client\WebsiteService;
 use App\Models\client\WebsiteSetting;
 use App\Models\client\WebsiteSlider;
@@ -67,6 +68,17 @@ class WebsiteMasterController extends Controller
         $items = WebsiteNews::where('client_id', $this->clientId($request))
             ->where('status', 'published')->latest('publish_date')->get()
             ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['featured_image']));
+
+        return $this->success($items);
+    }
+
+    public function faqs(Request $request)
+    {
+        $items = WebsiteFaq::where('client_id', $this->clientId($request))
+            ->where('status', 'published')
+            ->orderBy('sort_order')
+            ->latest('id')
+            ->get();
 
         return $this->success($items);
     }
