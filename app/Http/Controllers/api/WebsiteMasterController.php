@@ -7,6 +7,7 @@ use App\Models\client\PncReview;
 use App\Models\client\PncVideo;
 use App\Models\client\WebsiteArticle;
 use App\Models\client\WebsiteBlog;
+use App\Models\client\WebsiteNews;
 use App\Models\client\WebsiteService;
 use App\Models\client\WebsiteSetting;
 use App\Models\client\WebsiteSlider;
@@ -55,6 +56,15 @@ class WebsiteMasterController extends Controller
     public function articles(Request $request)
     {
         $items = WebsiteArticle::where('client_id', $this->clientId($request))
+            ->where('status', 'published')->latest('publish_date')->get()
+            ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['featured_image']));
+
+        return $this->success($items);
+    }
+
+    public function news(Request $request)
+    {
+        $items = WebsiteNews::where('client_id', $this->clientId($request))
             ->where('status', 'published')->latest('publish_date')->get()
             ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['featured_image']));
 

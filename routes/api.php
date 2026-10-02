@@ -7,6 +7,7 @@ use App\Http\Controllers\api\CountryController;
 use App\Http\Controllers\admin\StateController;
 use App\Http\Controllers\admin\DistrictController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\api\WebsiteMasterController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -19,6 +20,7 @@ Route::middleware('check.api')->group(function () {
     Route::get('services', [WebsiteMasterController::class, 'services']);
     Route::get('blogs', [WebsiteMasterController::class, 'blogs']);
     Route::get('articles', [WebsiteMasterController::class, 'articles']);
+    Route::get('news', [WebsiteMasterController::class, 'news']);
     Route::get('reviews', [WebsiteMasterController::class, 'reviews']);
     Route::get('videos', [WebsiteMasterController::class, 'videos']);
 });

@@ -20,6 +20,7 @@
         <a class="{{ request()->routeIs('panel.client-services.*') ? 'is-active' : '' }}" href="{{ route('panel.client-services.index') }}"><span>&#10022;</span> Services</a>
         <a class="{{ request()->routeIs('panel.client-blogs.*') ? 'is-active' : '' }}" href="{{ route('panel.client-blogs.index') }}"><span>&#9998;</span> Blogs</a>
         <a class="{{ request()->routeIs('panel.client-articles.*') ? 'is-active' : '' }}" href="{{ route('panel.client-articles.index') }}"><span>&#9997;</span> Articles</a>
+        <a class="{{ request()->routeIs('panel.client-news.*') ? 'is-active' : '' }}" href="{{ route('panel.client-news.index') }}"><span>&#128240;</span> News</a>
         <a class="{{ request()->routeIs('panel.slider.*') ? 'is-active' : '' }}" href="{{ route('panel.slider.index') }}"><span>&#9645;</span> Slider images</a>
         <a class="{{ request()->routeIs('panel.pnc-reviews.*') ? 'is-active' : '' }}" href="{{ route('panel.pnc-reviews.index') }}"><span>&#9733;</span> Reviews &amp; feedback</a>
         <a href="{{ route('panel.pnc-videos.index') }}"><span>&#9654;</span> Videos</a>
