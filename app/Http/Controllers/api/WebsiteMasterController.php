@@ -79,7 +79,7 @@ class WebsiteMasterController extends Controller
     public function faqs(Request $request)
     {
         $items = WebsiteFaq::where('client_id', $this->clientId($request))
-            ->where('status', 'published')
+            // ->where('status', 'published')
             ->orderBy('sort_order')
             ->latest('id')
             ->get();
