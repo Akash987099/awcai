@@ -3,39 +3,40 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 
 class Authenticate extends Middleware
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     */
-    protected function redirectTo(Request $request): ?string
+    protected function unauthenticated($request, array $guards)
     {
         if ($request->expectsJson()) {
-            return response()->json(['error' => 'unautorised'], 400);
+            throw new AuthenticationException('Unauthenticated.', $guards);
         }
 
-        $guards = array_keys(config('auth.guards'));
-        foreach ($guards as $guard) {
-            if (auth()->guard($guard)->check()) {
-                continue;
-            }
+        throw new AuthenticationException(
+            'Unauthenticated.',
+            $guards,
+            $this->loginRoute($guards[0] ?? null, $request)
+        );
+    }
 
-            if($guard == 'admin') {
-                return route('admin.login');
-            }
+    protected function redirectTo(Request $request): ?string
+    {
+        return $this->loginRoute(null, $request);
+    }
 
-            if($guard == 'user') {
-                return route('user.login');
-            }
-
-            if($guard == 'client') {
-                return route('client.login');
-            }
-
-        }
-
-        return route('user.login-form');
+    private function loginRoute(?string $guard, Request $request): string
+    {
+        return match ($guard) {
+            'admin' => route('admin.login'),
+            'client' => route('panel.login'),
+            'user' => route('user.login'),
+            default => $request->is('admin/*')
+                ? route('admin.login')
+                : ($request->is('panel/user/*')
+                    ? route('panel.login')
+                    : route('user.login')),
+        };
     }
 }
