@@ -19,7 +19,7 @@
                     <h2>{{ $page->title }}</h2>
                     <p>{{ Str::limit(strip_tags($page->content), 180) }}</p>
                     <div class="cp-service-card__actions">
-                        <button type="button" class="cms-edit" data-page='@json(["id" => $page->id, "title" => $page->title, "slug" => $page->slug, "content" => $page->content, "status" => $page->status, "meta_title" => $page->meta_title, "meta_description" => $page->meta_description])'>Edit</button>
+                        <button type="button" class="cms-edit" data-page="{{ base64_encode(json_encode(['id' => $page->id, 'title' => $page->title, 'slug' => $page->slug, 'content' => $page->content, 'status' => $page->status, 'meta_title' => $page->meta_title, 'meta_description' => $page->meta_description])) }}">Edit</button>
                         <button type="button" class="delete-btn" data-id="{{ $page->id }}" data-url="{{ route('panel.client-cms.delete', $page->id) }}">Delete</button>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function close() { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); }
     ['cms-add-open', 'cms-add-empty'].forEach(function (id) { var button = document.getElementById(id); if (button) button.addEventListener('click', function () { open(); }); });
-    document.querySelectorAll('.cms-edit').forEach(function (button) { button.addEventListener('click', function () { open(JSON.parse(button.dataset.page)); }); });
+    document.querySelectorAll('.cms-edit').forEach(function (button) { button.addEventListener('click', function () { open(JSON.parse(atob(button.dataset.page))); }); });
     modal.querySelectorAll('[data-cms-close]').forEach(function (button) { button.addEventListener('click', close); });
 });
 </script>
