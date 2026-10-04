@@ -88,7 +88,7 @@ Route::controller(QuizController::class)->group(function () {
     Route::get('quiz', 'index')->name('quiz.index');
 });
 
-Route::prefix('projects')->controller(ProjectController::class)->name('projects.')->group(function(){
+Route::prefix('all-projects')->controller(ProjectController::class)->name('projects.')->group(function(){
     Route::get('', 'index')->name('index');
 });
 
