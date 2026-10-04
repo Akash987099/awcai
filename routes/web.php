@@ -97,7 +97,7 @@ Route::prefix('project')->controller(ProjectController::class)->name('project.')
 });
 
 Route::controller(ProjectController::class)->group(function () {
-    Route::get('complate/project', 'complateProject')->name('complate_project');
+    Route::get('complate/projects', 'complateProject')->name('complate_project');
 });
 
 Route::prefix('service')->controller(ServiceController::class)->name('service.')->group(function () {
