@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="bg-slate-50 py-14">
+<div class="bg-slate-50 py-20">
     <div class="container mx-auto px-4">
 
         <!-- Heading -->
