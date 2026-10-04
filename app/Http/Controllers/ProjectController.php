@@ -85,7 +85,7 @@ class ProjectController extends Controller
     }
     
     public function complateProject(){
-        return view('complete-project');
+        return view('complete-projects');
     }
     
 }
