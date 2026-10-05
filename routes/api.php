@@ -16,6 +16,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('check.api')->group(function () {
     Route::get('products', [ProductController::class, 'products']);
     Route::get('website-settings', [WebsiteMasterController::class, 'settings']);
+    Route::get('about', [WebsiteMasterController::class, 'about']);
     Route::get('sliders', [WebsiteMasterController::class, 'sliders']);
     Route::get('services', [WebsiteMasterController::class, 'services']);
     Route::get('blogs', [WebsiteMasterController::class, 'blogs']);

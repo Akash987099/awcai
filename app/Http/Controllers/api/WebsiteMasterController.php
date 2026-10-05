@@ -13,6 +13,7 @@ use App\Models\client\WebsiteCmsPage;
 use App\Models\client\WebsiteService;
 use App\Models\client\WebsiteSetting;
 use App\Models\client\WebsiteSlider;
+use App\Models\client\WebsiteAbout;
 use Illuminate\Http\Request;
 
 class WebsiteMasterController extends Controller
@@ -35,6 +36,17 @@ class WebsiteMasterController extends Controller
             ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['image']));
 
         return $this->success($items);
+    }
+
+    public function about(Request $request)
+    {
+        $about = WebsiteAbout::where('client_id', $this->clientId($request))->first();
+
+        if (!$about) {
+            return response()->json(['status' => 'error', 'message' => 'About content not found.'], 404);
+        }
+
+        return $this->success($this->withMediaUrls($about->toArray(), ['primary_image', 'secondary_image']));
     }
 
     public function services(Request $request)
