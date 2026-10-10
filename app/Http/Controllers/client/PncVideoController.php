@@ -23,26 +23,34 @@ class PncVideoController extends Controller
 
         $data = $request->validate([
             'title' => ['required', 'string', 'max:160'],
-            'video' => ['required', 'file', 'mimes:mp4,webm,mov,avi,mkv', 'max:102400'],
+            'video_source' => ['required', 'in:upload,youtube'],
+            'video' => ['nullable', 'required_if:video_source,upload', 'prohibited_if:video_source,youtube', 'file', 'mimes:mp4,webm,mov,avi,mkv', 'max:102400'],
+            'youtube_url' => ['nullable', 'required_if:video_source,youtube', 'prohibited_if:video_source,upload', 'url', 'max:255', function ($attribute, $value, $fail) {
+                $host = strtolower((string) parse_url($value, PHP_URL_HOST));
+                if (!in_array($host, ['youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtu.be', 'www.youtu.be'], true)) {
+                    $fail('Please enter a valid YouTube URL.');
+                }
+            }],
             'description' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        $data['video_path'] = $this->storeVideo($request, $client->api_key);
-        unset($data['video']);
+        $data['source_type'] = $data['video_source'];
+        $data['video_path'] = $request->hasFile('video') ? $this->storeVideo($request, $client->api_key) : null;
+        unset($data['video'], $data['video_source']);
 
         PncVideo::create($data + [
             'client_id' => $client->id,
             'status' => 'published',
         ]);
 
-        return back()->with('success', 'Video uploaded successfully.');
+        return back()->with('success', 'Video added successfully.');
     }
 
     public function delete($id)
     {
         $video = PncVideo::where('client_id', Auth::guard('client')->id())->findOrFail($id);
 
-        if ($video->video_path && File::exists(public_path($video->video_path))) {
+        if ($video->source_type === 'upload' && $video->video_path && File::exists(public_path($video->video_path))) {
             File::delete(public_path($video->video_path));
         }
 
