@@ -24,7 +24,7 @@ class WebsiteAboutController extends Controller
             'name' => ['nullable', 'string', 'max:160'],
             'designation' => ['nullable', 'string', 'max:180'],
             'organization' => ['nullable', 'string', 'max:255'],
-            // 'description' => ['nullable', 'string', 'max:10000'],
+            'description' => ['nullable', 'string',],
             'stat_one_value' => ['nullable', 'string', 'max:80'],
             'stat_one_label' => ['nullable', 'string', 'max:120'],
             'stat_two_value' => ['nullable', 'string', 'max:80'],
