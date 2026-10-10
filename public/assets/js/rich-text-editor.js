@@ -1,3 +1,4 @@
+
 (function () {
     'use strict';
 
@@ -10,25 +11,51 @@
         }
 
         document.querySelectorAll('textarea').forEach(function (textarea) {
-            if (editors.has(textarea) || textarea.closest('[data-no-rich-text]')) return;
+            if (
+                editors.has(textarea) ||
+                textarea.closest('[data-no-rich-text]')
+            ) {
+                return;
+            }
 
             ClassicEditor.create(textarea, {
-                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'undo', 'redo']
+                toolbar: [
+                    'sourceEditing',
+                    '|',
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'link',
+                    'bulletedList',
+                    'numberedList',
+                    'blockQuote',
+                    '|',
+                    'undo',
+                    'redo'
+                ]
             }).then(function (editor) {
                 editors.set(textarea, editor);
+
                 editor.model.document.on('change:data', function () {
                     editor.updateSourceElement();
                 });
             }).catch(function (error) {
-                console.error('CKEditor initialisation failed.', error);
+                console.error(
+                    'CKEditor initialisation failed.',
+                    error
+                );
             });
         });
     }
 
     window.RichTextEditors = {
         initialise: initialise,
+
         refresh: function () {
-            editors.forEach(function (editor) { editor.updateSourceElement(); });
+            editors.forEach(function (editor) {
+                editor.updateSourceElement();
+            });
         }
     };
 
