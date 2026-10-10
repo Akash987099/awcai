@@ -16,6 +16,7 @@ use App\Http\Controllers\client\PncReviewController;
 use App\Http\Controllers\client\PncVideoController;
 Route::controller(LoginController::class)->group(function(){Route::get('login','loginClient')->name('login');Route::post('logins','loginsClient')->name('logins');});
 Route::middleware(['auth:client'])->group(function(){
+Route::post('logout',[LoginController::class,'logoutClient'])->name('logout');
 Route::get('',[ClientController::class,'index'])->name('index');Route::get('tokens',[ClientController::class,'tokens'])->name('tokens');
 Route::get('videos',[PncVideoController::class,'index'])->name('pnc-videos.index');Route::post('videos',[PncVideoController::class,'store'])->name('pnc-videos.store');Route::delete('videos/{id}',[PncVideoController::class,'delete'])->name('pnc-videos.delete');Route::get('reviews',[PncReviewController::class,'index'])->name('pnc-reviews.index');Route::post('reviews',[PncReviewController::class,'store'])->name('pnc-reviews.store');Route::post('reviews/{id}',[PncReviewController::class,'update'])->name('pnc-reviews.update');Route::delete('reviews/{id}',[PncReviewController::class,'delete'])->name('pnc-reviews.delete');
 Route::get('settings',[WebsiteSettingController::class,'show'])->name('settings.show');Route::post('settings',[WebsiteSettingController::class,'update'])->name('settings.update');

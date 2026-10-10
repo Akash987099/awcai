@@ -46,6 +46,15 @@ class LoginController extends Controller
         return response()->json(['status' => 'error', 'message' => 'Invalid username or password.']);
     }
 
+    public function logoutClient(Request $request)
+    {
+        Auth::guard('client')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('panel.login');
+    }
+
     public function userlogin(){
         return view('auth.user-login');
     }

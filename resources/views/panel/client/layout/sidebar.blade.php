@@ -2,7 +2,7 @@
     $client = Auth::guard('client')->user();
 @endphp
 
-<aside class="cp-sidebar" id="cp-sidebar">
+<aside class="cp-sidebar" id="cp-sidebar" style="height:100vh; overflow-y:scroll; overscroll-behavior:contain;">
     <a class="cp-brand" href="{{ route('panel.index') }}">
         <span class="cp-brand__mark">+</span>
         <span><strong>AWC Care</strong><small>Clinic network portal</small></span>
@@ -31,6 +31,12 @@
         <button type="button" class="cp-nav__button cp-settings-open"><span>&#9881;</span> Website settings</button>
         <a href="mailto:support@aryawebinnovations.com"><span>?</span> Help &amp; support</a>
     </nav>
-    <div class="cp-sidebar__footer"><span class="cp-status-dot"></span> System secure</div>
+    <div class="cp-sidebar__footer">
+        <span class="cp-status-dot"></span> System secure
+        <form action="{{ route('panel.logout') }}" method="POST">
+            @csrf
+            <button class="cp-sidebar__signout" type="submit"><span>&#10162;</span> Sign out</button>
+        </form>
+    </div>
 </aside>
 <div class="cp-sidebar-overlay" id="cp-sidebar-overlay"></div>
