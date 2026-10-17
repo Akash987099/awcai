@@ -54,9 +54,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://awcai.cloud'),
+    'url' => env('APP_URL', 'https://digimediya.online'),
 
-    'asset_url' => env('ASSET_URL', 'https://awcai.cloud/public/'),
+    'asset_url' => env('ASSET_URL', 'https://digimediya.online/public/'),
 
     /*
     |--------------------------------------------------------------------------

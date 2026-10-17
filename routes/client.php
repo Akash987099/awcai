@@ -1,4 +1,6 @@
+
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\panel\ClientController;
@@ -14,19 +16,188 @@ use App\Http\Controllers\client\WebsiteFaqController;
 use App\Http\Controllers\client\WebsiteCmsPageController;
 use App\Http\Controllers\client\PncReviewController;
 use App\Http\Controllers\client\PncVideoController;
-Route::controller(LoginController::class)->group(function(){Route::get('login','loginClient')->name('login');Route::post('logins','loginsClient')->name('logins');});
-Route::middleware(['auth:client'])->group(function(){
-Route::post('logout',[LoginController::class,'logoutClient'])->name('logout');
-Route::get('',[ClientController::class,'index'])->name('index');Route::get('tokens',[ClientController::class,'tokens'])->name('tokens');
-Route::get('videos',[PncVideoController::class,'index'])->name('pnc-videos.index');Route::post('videos',[PncVideoController::class,'store'])->name('pnc-videos.store');Route::delete('videos/{id}',[PncVideoController::class,'delete'])->name('pnc-videos.delete');Route::get('reviews',[PncReviewController::class,'index'])->name('pnc-reviews.index');Route::post('reviews',[PncReviewController::class,'store'])->name('pnc-reviews.store');Route::post('reviews/{id}',[PncReviewController::class,'update'])->name('pnc-reviews.update');Route::delete('reviews/{id}',[PncReviewController::class,'delete'])->name('pnc-reviews.delete');
-Route::get('settings',[WebsiteSettingController::class,'show'])->name('settings.show');Route::post('settings',[WebsiteSettingController::class,'update'])->name('settings.update');
-Route::get('about',[\App\Http\Controllers\client\WebsiteAboutController::class,'index'])->name('about.index');Route::post('about',[\App\Http\Controllers\client\WebsiteAboutController::class,'update'])->name('about.update');
-Route::get('sliders',[WebsiteSliderController::class,'index'])->name('slider.index');Route::post('sliders',[WebsiteSliderController::class,'store'])->name('slider.store');Route::delete('sliders/{id}',[WebsiteSliderController::class,'delete'])->name('slider.delete');
-Route::get('services',[WebsiteServiceController::class,'index'])->name('client-services.index');Route::post('services',[WebsiteServiceController::class,'store'])->name('client-services.store');Route::post('services/{id}',[WebsiteServiceController::class,'update'])->name('client-services.update');Route::delete('services/{id}',[WebsiteServiceController::class,'delete'])->name('client-services.delete');
-Route::get('blogs',[WebsiteBlogController::class,'index'])->name('client-blogs.index');Route::post('blogs',[WebsiteBlogController::class,'store'])->name('client-blogs.store');Route::post('blogs/{id}',[WebsiteBlogController::class,'update'])->name('client-blogs.update');Route::delete('blogs/{id}',[WebsiteBlogController::class,'delete'])->name('client-blogs.delete');
-Route::get('articles',[WebsiteArticleController::class,'index'])->name('client-articles.index');Route::post('articles',[WebsiteArticleController::class,'store'])->name('client-articles.store');Route::delete('articles/{id}',[WebsiteArticleController::class,'delete'])->name('client-articles.delete');
-Route::get('news',[WebsiteNewsController::class,'index'])->name('client-news.index');Route::post('news',[WebsiteNewsController::class,'store'])->name('client-news.store');Route::delete('news/{id}',[WebsiteNewsController::class,'delete'])->name('client-news.delete');
-Route::get('faqs',[WebsiteFaqController::class,'index'])->name('client-faqs.index');Route::post('faqs',[WebsiteFaqController::class,'store'])->name('client-faqs.store');Route::post('faqs/{id}',[WebsiteFaqController::class,'update'])->name('client-faqs.update');Route::delete('faqs/{id}',[WebsiteFaqController::class,'delete'])->name('client-faqs.delete');
-Route::get('cms-pages',[WebsiteCmsPageController::class,'index'])->name('client-cms.index');Route::post('cms-pages',[WebsiteCmsPageController::class,'store'])->name('client-cms.store');Route::post('cms-pages/{id}',[WebsiteCmsPageController::class,'update'])->name('client-cms.update');Route::delete('cms-pages/{id}',[WebsiteCmsPageController::class,'delete'])->name('client-cms.delete');
-Route::prefix('customer')->controller(CustomerController::class)->name('customer.')->group(function(){Route::get('staff','index')->name('index');Route::get('add/{id}','add')->name('add');Route::post('store','store')->name('store');Route::get('pay/{id}','pay')->name('pay');Route::post('pay/amount','payAmount')->name('pay-amount');Route::get('fetchservice','fetchservice')->name('fetchservice');Route::get('add','addUser')->name('addUser');Route::get('add/form','addform')->name('add-from');Route::post('userStore','userStore')->name('userStore');});
-Route::prefix('product')->controller(ProductController::class)->name('product.')->group(function(){Route::get('','index')->name('index');Route::get('add','add')->name('add');Route::post('store','store')->name('store');Route::get('edit/{id}','edit')->name('edit');Route::delete('delete/{id}','delete')->name('delete');Route::post('update','update')->name('update');});});
+use App\Http\Controllers\client\WebsiteAboutController;
+
+/*
+|--------------------------------------------------------------------------
+| Client Authentication Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('login', 'loginClient')->name('login');
+    Route::post('logins', 'loginsClient')->name('logins');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Authenticated Client Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth:client'])->group(function () {
+
+    // Authentication
+    Route::post('logout', [LoginController::class, 'logoutClient'])
+        ->name('logout');
+
+    // Dashboard
+    Route::get('', [ClientController::class, 'index'])
+        ->name('index');
+
+    Route::get('tokens', [ClientController::class, 'tokens'])
+        ->name('tokens');
+
+    // Videos
+    Route::controller(PncVideoController::class)
+        ->prefix('videos')
+        ->name('pnc-videos.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // Reviews
+    Route::controller(PncReviewController::class)
+        ->prefix('reviews')
+        ->name('pnc-reviews.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::post('{id}', 'update')->name('update');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // Website Settings
+    Route::controller(WebsiteSettingController::class)
+        ->prefix('settings')
+        ->name('settings.')
+        ->group(function () {
+            Route::get('', 'show')->name('show');
+            Route::post('', 'update')->name('update');
+        });
+
+    // About Us
+    Route::controller(WebsiteAboutController::class)
+        ->prefix('about')
+        ->name('about.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'update')->name('update');
+        });
+
+    // Website Sliders
+    Route::controller(WebsiteSliderController::class)
+        ->prefix('sliders')
+        ->name('slider.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // Website Services
+    Route::controller(WebsiteServiceController::class)
+        ->prefix('services')
+        ->name('client-services.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::post('{id}', 'update')->name('update');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // Website Blogs
+    Route::controller(WebsiteBlogController::class)
+        ->prefix('blogs')
+        ->name('client-blogs.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::post('{id}', 'update')->name('update');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // Website Articles
+    Route::controller(WebsiteArticleController::class)
+        ->prefix('articles')
+        ->name('client-articles.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // Website News
+    Route::controller(WebsiteNewsController::class)
+        ->prefix('news')
+        ->name('client-news.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // Website FAQs
+    Route::controller(WebsiteFaqController::class)
+        ->prefix('faqs')
+        ->name('client-faqs.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::post('{id}', 'update')->name('update');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    // CMS Pages
+    Route::controller(WebsiteCmsPageController::class)
+        ->prefix('cms-pages')
+        ->name('client-cms.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::post('', 'store')->name('store');
+            Route::post('{id}', 'update')->name('update');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Customer Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::prefix('customer')
+        ->controller(CustomerController::class)
+        ->name('customer.')
+        ->group(function () {
+            Route::get('staff', 'index')->name('index');
+            Route::get('add/{id}', 'add')->name('add');
+            Route::post('store', 'store')->name('store');
+            Route::get('pay/{id}', 'pay')->name('pay');
+            Route::post('pay/amount', 'payAmount')->name('pay-amount');
+            Route::get('fetchservice', 'fetchservice')->name('fetchservice');
+            Route::get('add', 'addUser')->name('addUser');
+            Route::get('add/form', 'addform')->name('add-from');
+            Route::post('userStore', 'userStore')->name('userStore');
+        });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Product Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::prefix('product')
+        ->controller(ProductController::class)
+        ->name('product.')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('add', 'add')->name('add');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::delete('delete/{id}', 'delete')->name('delete');
+            Route::post('update', 'update')->name('update');
+        });
+
+});
