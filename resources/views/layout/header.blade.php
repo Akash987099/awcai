@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     @php
-        $defaultTitle = 'AryaWeb innovations | Website Development, App Development & Digital Marketing Company';
-        $defaultDescription = 'AryaWeb innovations is a professional IT company in Agra offering website development, app development, UI/UX design, eCommerce solutions, and digital marketing services.';
+        $defaultTitle = 'Arya Web Coding | IT Company in Agra for Websites, Software, CRM & HRM';
+        $defaultDescription = 'Arya Web Coding is an IT company in Agra for website design, custom software, CRM, HRM, mobile apps, SEO and digital marketing services.';
         $metaTitle = trim($__env->yieldContent('title', $defaultTitle));
         $metaDescription = trim($__env->yieldContent('meta_description', $defaultDescription));
-        $metaKeywords = trim($__env->yieldContent('meta_keywords', 'AryaWeb innovations, website development company, app development company, digital marketing company, UI UX design, Laravel development, Agra IT company'));
+        $metaKeywords = trim($__env->yieldContent('meta_keywords', 'IT company in Agra, website development company in Agra, software development company in Agra, CRM development Agra, HRM software Agra, digital marketing agency Agra'));
         $metaImage = trim($__env->yieldContent('meta_image', asset('assets/img/about.jpg')));
         $canonicalUrl = trim($__env->yieldContent('canonical', url()->current()));
     @endphp
@@ -19,11 +19,11 @@
     <meta name="description" content="{{ $metaDescription }}">
     <meta name="keywords" content="{{ $metaKeywords }}">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <meta name="author" content="AryaWeb innovations">
+    <meta name="author" content="Arya Web Coding">
     <link rel="canonical" href="{{ $canonicalUrl }}">
 
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="AryaWeb innovations">
+    <meta property="og:site_name" content="Arya Web Coding">
     <meta property="og:title" content="{{ $metaTitle }}">
     <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:url" content="{{ $canonicalUrl }}">
@@ -163,6 +163,9 @@
                         <li><a href="{{route('service.web-development')}}" class="{{ $submenuLink }}">Web Development</a></li>
                         <li><a href="{{route('service.app-development')}}" class="{{ $submenuLink }}">App Development</a></li>
                         <li><a href="{{route('service.ui-development')}}" class="{{ $submenuLink }}">UI/UX Design</a></li>
+                        <li><a href="{{ route('service.business-software', ['service' => 'software-development']) }}" class="{{ $submenuLink }}">Custom Software</a></li>
+                        <li><a href="{{ route('service.business-software', ['service' => 'crm-development']) }}" class="{{ $submenuLink }}">CRM Development</a></li>
+                        <li><a href="{{ route('service.business-software', ['service' => 'hrm-software']) }}" class="{{ $submenuLink }}">HRM Software</a></li>
                         <li><a href="{{route('digital-marketing.overview')}}" class="{{ $submenuLink }}">Digital Marketing</a></li>
                     </ul>
                 </li>

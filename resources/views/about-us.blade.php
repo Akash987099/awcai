@@ -1,6 +1,8 @@
 @extends('layout.app')
-@section('title', 'About AryaWeb Innovations | Website Development, App Development & Digital Solutions')
-@section('meta_description', 'Learn about AryaWeb Innovations, our journey, mission, values, and how we help businesses grow with websites, apps, UI UX design, and digital marketing.')
+@section('title', 'About Arya Web Coding | IT Company in Agra')
+@section('meta_description', 'Learn about Arya Web Coding, an IT company in Agra delivering website development, custom software, CRM, HRM, apps, UI UX and digital marketing.')
+@section('meta_keywords', 'about Arya Web Coding, IT company in Agra, software company Agra, website development team Agra')
+@section('canonical', route('about-us'))
 @section('content')
     <div class="pt-20 md:pt-16"></div>
 

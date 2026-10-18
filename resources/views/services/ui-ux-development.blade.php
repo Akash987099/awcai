@@ -1,7 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'UI UX Design Services | Arya Web Coding')
-@section('meta_description', 'UI UX design services by Arya Web Coding for websites, mobile apps, dashboards, wireframes, prototypes, and conversion-friendly digital products.')
+@section('title', 'UI UX Design Company in Agra | Arya Web Coding')
+@section('meta_description', 'UI UX design company in Agra for websites, mobile apps, dashboards, wireframes, prototypes and conversion-friendly digital products.')
+@section('meta_keywords', 'UI UX design company in Agra, website UI design Agra, mobile app UI UX, dashboard design, product website design')
 @section('canonical', route('service.ui-development'))
 
 @section('content')

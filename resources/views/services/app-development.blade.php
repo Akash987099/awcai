@@ -1,7 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'App Development Services | Arya Web Coding')
-@section('meta_description', 'Mobile app development services by Arya Web Coding for Android, iOS, hybrid apps, backend systems, and ongoing support.')
+@section('title', 'App Development Company in Agra | Arya Web Coding')
+@section('meta_description', 'Mobile app development company in Agra for Android, iOS, hybrid apps, backend systems and ongoing support.')
+@section('meta_keywords', 'app development company in Agra, mobile app development Agra, Android app developer Agra, iOS app development, custom mobile application')
 @section('canonical', route('service.app-development'))
 
 @section('content')

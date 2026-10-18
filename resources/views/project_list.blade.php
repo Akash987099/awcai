@@ -1,8 +1,8 @@
 @extends('layout.app')
-@section('title', 'AryaWeb innovations | Professional Website, App & Digital Marketing Company in Agra')
-@section('meta_description', 'AryaWeb innovations is a professional IT company in Agra delivering website development, mobile app development, UI/UX design, eCommerce solutions, SEO, and digital marketing services for startups and businesses.')
-@section('meta_keywords', 'AryaWeb innovations, website development company in Agra, app development company in Agra, SEO company in Agra, digital marketing agency in Agra, UI UX design company, eCommerce development, Laravel development')
-@section('canonical', route('index'))
+@section('title', 'Website, Software & App Development Projects | Arya Web Coding Agra')
+@section('meta_description', 'Explore website design, software, CRM, HRM, mobile app and digital product projects delivered by Arya Web Coding, an IT company in Agra.')
+@section('meta_keywords', 'website development projects Agra, software development portfolio Agra, CRM projects, app development portfolio, Arya Web Coding')
+@section('canonical', route('projects.index'))
 @section('meta_image', asset('assets/img/about.jpg'))
 @section('content')
 

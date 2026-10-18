@@ -2,6 +2,7 @@
 
 @section('title', $page['title'])
 @section('meta_description', $page['meta_description'])
+@section('meta_keywords', $page['meta_keywords'] ?? 'digital marketing company in Agra, SEO company in Agra, local SEO Agra, Google Ads agency Agra, social media marketing Agra')
 @section('canonical', $page['canonical'])
 
 @section('content')

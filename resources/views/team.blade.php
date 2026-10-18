@@ -1,7 +1,9 @@
 @extends('layout.app')
 
-@section('title', 'Our Team | AryaWeb ')
-@section('meta_description', 'Meet the AryaWeb  team behind our website development, app development, UI UX design, and digital marketing solutions.')
+@section('title', 'Our Team | Arya Web Coding, IT Company in Agra')
+@section('meta_description', 'Meet the Arya Web Coding team in Agra behind website development, custom software, CRM, HRM, app development, UI UX and digital marketing solutions.')
+@section('meta_keywords', 'software development team Agra, website developers in Agra, CRM developers Agra, Arya Web Coding team')
+@section('canonical', route('team'))
 @section('content')
     <div class="pt-24 md:pt-20"></div>
 

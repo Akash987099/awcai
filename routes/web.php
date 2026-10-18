@@ -34,9 +34,14 @@ Route::get('/sitemap.xml', function () {
         ['loc' => route('about-us'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ['loc' => route('team'), 'changefreq' => 'monthly', 'priority' => '0.7'],
         ['loc' => route('technologies'), 'changefreq' => 'monthly', 'priority' => '0.7'],
+        ['loc' => route('projects.index'), 'changefreq' => 'weekly', 'priority' => '0.8'],
+        ['loc' => route('complate_project'), 'changefreq' => 'monthly', 'priority' => '0.7'],
         ['loc' => route('service.web-development'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ['loc' => route('service.app-development'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ['loc' => route('service.ui-development'), 'changefreq' => 'monthly', 'priority' => '0.8'],
+        ['loc' => route('service.business-software', ['service' => 'software-development']), 'changefreq' => 'monthly', 'priority' => '0.9'],
+        ['loc' => route('service.business-software', ['service' => 'crm-development']), 'changefreq' => 'monthly', 'priority' => '0.9'],
+        ['loc' => route('service.business-software', ['service' => 'hrm-software']), 'changefreq' => 'monthly', 'priority' => '0.9'],
         ['loc' => route('digital-marketing.overview'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ['loc' => route('contact.index'), 'changefreq' => 'monthly', 'priority' => '0.7'],
         ['loc' => route('career.index'), 'changefreq' => 'monthly', 'priority' => '0.7'],
@@ -104,6 +109,7 @@ Route::prefix('service')->controller(ServiceController::class)->name('service.')
     Route::get('web/development', 'webDevelopment')->name('web-development');
     Route::get('app/development', 'appDevelopment')->name('app-development');
     Route::get('ui/ux/development', 'uiDevelopment')->name('ui-development');
+    Route::get('{service}', 'businessSoftware')->where('service', 'software-development|crm-development|hrm-software')->name('business-software');
 });
 
 Route::prefix('digital-marketing')->controller(DigitalMarketingController::class)->name('digital-marketing.')->group(function () {

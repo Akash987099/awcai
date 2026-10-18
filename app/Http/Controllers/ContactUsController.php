@@ -8,8 +8,8 @@ class ContactUsController extends Controller
     {
         return view('pages.contact-us', [
             'page' => [
-                'title' => 'Contact Us | Arya Web Coding',
-                'meta_description' => 'Contact Arya Web Coding for website development, app development, UI/UX design, SEO, and digital marketing enquiries.',
+                'title' => 'Contact Arya Web Coding | Website, Software, CRM & HRM Company in Agra',
+                'meta_description' => 'Contact Arya Web Coding in Agra for website design, custom software, CRM, HRM, mobile app development, SEO and digital marketing enquiries.',
                 'canonical' => route('contact.index'),
                 'eyebrow' => 'Start A Conversation',
                 'hero_title' => 'Let us turn your next idea into a polished digital product',
