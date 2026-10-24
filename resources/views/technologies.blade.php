@@ -1,15 +1,11 @@
 @extends('layout.app')
-@section('title', 'Technologies We Use | Website & Software Development Company in Agra')
-@section('meta_description', 'Explore the web, mobile app, UI UX and software technologies used by Arya Web Coding for reliable digital products in Agra and across India.')
-@section('meta_keywords', 'Laravel developers Agra, web development technologies, software development company Agra, mobile app technologies')
-@section('canonical', route('technologies'))
 @section('content')
     <div class="py-8"></div>
 
  <section class="py-8 bg-gray-200">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h1 class="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">Technologies We Use for Website and Software Development</h1>
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">Technologies</h2>
                 <div class="h-1 w-20 bg-accent mx-auto"></div>
             </div>
 
