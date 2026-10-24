@@ -1,7 +1,7 @@
 @extends('layout.app')
-@section('title', 'IT Company in Agra | Website Design, Software, CRM, HRM & Digital Marketing')
-@section('meta_description', 'Arya Web Coding is an IT company in Agra providing website design, custom software, CRM and HRM development, mobile apps, SEO and digital marketing for growing businesses.')
-@section('meta_keywords', 'IT company in Agra, website design company in Agra, software development company in Agra, CRM development Agra, HRM software Agra, SEO company Agra, digital marketing agency Agra')
+@section('title', 'AryaWeb innovations | Professional Website, App & Digital Marketing Company in Agra')
+@section('meta_description', 'AryaWeb innovations is a professional IT company in Agra delivering website development, mobile app development, UI/UX design, eCommerce solutions, SEO, and digital marketing services for startups and businesses.')
+@section('meta_keywords', 'AryaWeb innovations, website development company in Agra, app development company in Agra, SEO company in Agra, digital marketing agency in Agra, UI UX design company, eCommerce development, Laravel development')
 @section('canonical', route('index'))
 @section('meta_image', asset('assets/img/about.jpg'))
 @section('content')
@@ -79,7 +79,6 @@
     <div class="pt-20 md:pt-16"></div>
 
     <section class="hero-slider relative overflow-hidden">
-        <h1 class="sr-only">IT Company in Agra for Website Design, Custom Software, CRM, HRM and Digital Marketing</h1>
 
     <!-- Background Orbs -->
     <div class="hero-orb hero-orb-one hidden md:block"></div>
@@ -91,25 +90,25 @@
         <!-- Slide 1 -->
         <div class="hero-slide is-active absolute inset-0" data-hero-slide>
             <img src="{{ asset('assets/img/banner2.png') }}" class="w-full h-full object-fill object-center opacity-80"
-                alt="Arya Web Coding website and software development services in Agra">
+                alt="AryaWeb innovations project showcase">
             <div class="hero-slide-overlay"></div>
         </div>
 
         <!-- Slide 2 -->
         <div class="hero-slide absolute inset-0 hidden" data-hero-slide>
-            <img src="{{ asset('assets/img/banner4.png') }}" class="w-full h-full object-fill object-center opacity-80" alt="Mobile app and custom software development in Agra">
+            <img src="{{ asset('assets/img/banner4.png') }}" class="w-full h-full object-fill object-center opacity-80">
             <div class="hero-slide-overlay"></div>
         </div>
 
         <!-- Slide 3 -->
         <div class="hero-slide absolute inset-0 hidden" data-hero-slide>
-            <img src="{{ asset('assets/img/banner5.png') }}" class="w-full h-full object-fill object-center opacity-80" alt="CRM development and business automation services in Agra">
+            <img src="{{ asset('assets/img/banner5.png') }}" class="w-full h-full object-fill object-center opacity-80">
             <div class="hero-slide-overlay"></div>
         </div>
 
         <!-- Slide 4 -->
         <div class="hero-slide absolute inset-0 hidden" data-hero-slide>
-            <img src="{{ asset('assets/img/banner3.png') }}" class="w-full h-full object-fill object-center opacity-80" alt="HRM software and UI UX design services in Agra">
+            <img src="{{ asset('assets/img/banner3.png') }}" class="w-full h-full object-fill object-center opacity-80">
             <div class="hero-slide-overlay"></div>
         </div>
 
@@ -1521,7 +1520,7 @@
     {
       "@type": "Organization",
       "@id": "{{ route('index') }}#organization",
-      "name": "Arya Web Coding",
+      "name": "AryaWeb innovations",
       "url": "{{ route('index') }}",
       "logo": "{{ asset('assets/img/logo.png') }}",
       "image": "{{ asset('assets/img/about.jpg') }}",
@@ -1542,7 +1541,7 @@
       "@type": "WebSite",
       "@id": "{{ route('index') }}#website",
       "url": "{{ route('index') }}",
-      "name": "Arya Web Coding",
+      "name": "AryaWeb innovations",
       "publisher": {
         "@id": "{{ route('index') }}#organization"
       },
@@ -1555,7 +1554,7 @@
     {
       "@type": "LocalBusiness",
       "@id": "{{ route('index') }}#localbusiness",
-      "name": "Arya Web Coding",
+      "name": "AryaWeb innovations",
       "url": "{{ route('index') }}",
       "image": "{{ asset('assets/img/about.jpg') }}",
       "telephone": "+91 9870992118",
@@ -1569,7 +1568,7 @@
       },
       "areaServed": "India",
       "priceRange": "$$",
-      "founder": "Arya Web Coding",
+      "founder": "AryaWeb innovations",
       "makesOffer": [
         {
           "@type": "Offer",
@@ -1597,13 +1596,6 @@
           "itemOffered": {
             "@type": "Service",
             "name": "Digital Marketing"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Custom Software, CRM and HRM Development"
           }
         }
       ]

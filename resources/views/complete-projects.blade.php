@@ -1,8 +1,4 @@
 @extends('layout.app')
-@section('title', 'Completed Website & Software Projects | Arya Web Coding Agra')
-@section('meta_description', 'See completed website, software, app and digital projects from Arya Web Coding, an IT company serving businesses in Agra and across India.')
-@section('meta_keywords', 'completed website projects Agra, software company portfolio Agra, website design work, app development projects')
-@section('canonical', route('complate_project'))
 
 @section('content')
 

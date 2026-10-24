@@ -1,8 +1,7 @@
 @extends('layout.app')
 
-@section('title', 'Website Development Company in Agra | Arya Web Coding')
-@section('meta_description', 'Website development company in Agra for business websites, product websites, portals, eCommerce stores and scalable web applications.')
-@section('meta_keywords', 'website development company in Agra, website design company in Agra, ecommerce website development, product website design, custom web development Agra')
+@section('title', 'Web Development Services | Arya Web Coding')
+@section('meta_description', 'Custom web development services by Arya Web Coding for business websites, portals, eCommerce stores, and scalable web applications.')
 @section('canonical', route('service.web-development'))
 
 @section('content')
