@@ -58,17 +58,33 @@ class WebsiteMasterController extends Controller
         return $this->success($items);
     }
 
-    public function servicesDetails(Request $request,$id){
+    
+    public function servicesDetails(Request $request, $id)
+    {
         if (!$id) {
-            return response()->json(['status' => 'error', 'message' => 'service id is required.'], 404);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Service ID is required.'
+            ], 404);
         }
 
-        $items = WebsiteService::where('client_id', $this->clientId($request))
-            ->where('id', $id)->first()
-            ->map(fn ($item) => $this->withMediaUrls($item->toArray(), ['image']));
+        $item = WebsiteService::where('client_id', $this->clientId($request))
+            ->where('id', $id)
+            ->first();
 
-        return $this->success($items);
+        if (!$item) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Service not found.'
+            ], 404);
+        }
 
+        $item = $this->withMediaUrls(
+            $item->toArray(),
+            ['image']
+        );
+
+        return $this->success($item);
     }
 
     public function blogs(Request $request)
