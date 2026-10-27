@@ -19,6 +19,7 @@ Route::middleware('check.api')->group(function () {
     Route::get('about', [WebsiteMasterController::class, 'about']);
     Route::get('sliders', [WebsiteMasterController::class, 'sliders']);
     Route::get('services', [WebsiteMasterController::class, 'services']);
+    Route::get('service/{id}', [WebsiteMasterController::class, 'servicesDetails']);
     Route::get('blogs', [WebsiteMasterController::class, 'blogs']);
     Route::get('articles', [WebsiteMasterController::class, 'articles']);
     Route::get('news', [WebsiteMasterController::class, 'news']);
