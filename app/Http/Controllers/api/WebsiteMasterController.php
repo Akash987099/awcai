@@ -58,7 +58,7 @@ class WebsiteMasterController extends Controller
         return $this->success($items);
     }
 
-    public function servicesDetails($id){
+    public function servicesDetails(Request $request,$id){
         if (!$id) {
             return response()->json(['status' => 'error', 'message' => 'service id is required.'], 404);
         }
